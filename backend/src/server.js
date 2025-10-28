@@ -10,6 +10,10 @@ const PORT = process.env.PORT
 app.use(express.json())
 app.use('/api/auth', authRoutes)
 
+app.get('/',(req, res)=>{
+    res.send('wellcome')
+})
+
 app.listen(PORT, () => {
     console.log(`server is running on port: ${PORT}`)
     connectDB()
