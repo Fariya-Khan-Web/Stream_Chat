@@ -50,11 +50,12 @@ const userSchema = new mongoose.Schema(
         ],
     },
 
-    {timestamps: true}
+    {timestamps: true} // createdAT updatedAt
 )
 
 
-// pre hook
+// pre hook 
+// hash their password with bcrypt before sending it to DB
 userSchema.pre("save", async function (next) {
 
     if(!this.isModified("password")) return next()
@@ -68,6 +69,12 @@ userSchema.pre("save", async function (next) {
         next(error)
     }
 })
+
+// match entered pass with hashed pass
+userSchema.methods.matchPassword = async function (enteredPass) {
+    const isPasswordCorrect = await bcrypt.compare(enteredPass, this.password)
+    return isPasswordCorrect
+}
 
 const User = mongoose.model('User', userSchema)
 
