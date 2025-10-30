@@ -72,7 +72,7 @@ export const logIn = async (req, res) => {
 
 
         // generate cookie
-        const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET_KEY, {
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY, {
             expiresIn: "7d"
         })
 
@@ -94,7 +94,7 @@ export const logIn = async (req, res) => {
 }
 
 
-
 export const logOut = (req, res) => {
-    res.send('logout route')
+    res.clearCookie('jwt')
+    return res.status(200).json({success: true, message: "Logout successful"})
 }
