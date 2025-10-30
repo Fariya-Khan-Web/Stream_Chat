@@ -111,3 +111,8 @@ export const logOut = (req, res) => {
     res.clearCookie('jwt')
     return res.status(200).json({success: true, message: "Logout successful"})
 }
+
+
+export const onboard = () =>{
+    
+}
