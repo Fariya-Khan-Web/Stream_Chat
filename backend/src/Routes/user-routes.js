@@ -15,8 +15,6 @@ router.put('/friendReq/:id/accept', acceptRequest)
 
 // notification
 router.get('/friendReqs', getRequest)
-
-
 router.get('/outgoingReqs', getSentRequests)
 
 export default router
