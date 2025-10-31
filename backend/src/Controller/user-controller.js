@@ -85,14 +85,53 @@ export const acceptRequest = async (req, res) => {
 
         // adding each other to their friend list
         await User.findByIdAndUpdate(request.sender, {
-            $addToSet: {friends: request.recipient} // only add if it doesn't exist already
+            $addToSet: { friends: request.recipient } // only add if it doesn't exist already
         })
         await User.findByIdAndUpdate(request.recipient, {
-            $addToSet: {friends: request.sender}
+            $addToSet: { friends: request.sender }
         })
 
     } catch (error) {
         console.log("Error in acceptRequest controller:", error)
+        res.status(500).json({ message: "Internal Server Error" })
+    }
+}
+
+
+export const getRequest = async (req, res) => {
+    try {
+        const myId = req.user.id
+
+        const reqForMe = await FriendRequest.find({
+            recipient: myId,
+            status: "pending"
+        }).populate("sender", "fullName profilePic nativeLanguage learningLanguage");
+
+        const acceptedReq = await FriendRequest.find({
+            sender: myId,
+            status: "accepted"
+        }).populate("recipient", "fullName profilePic");
+
+        res.status(200).json({ reqForMe, acceptedReq })
+    } catch (error) {
+        console.log("Error in getRequests controller:", error)
+        res.status(500).json({ message: "Internal Server Error" })
+    }
+}
+
+export const getSentRequests = async (req, res) => {
+    try {
+        const myId = req.user.id
+
+        const myPendingReq = await FriendRequest.find({
+            sender: myId,
+            status: "pending"
+        }).populate("recipient", "fullName profilePic nativeLanguage learningLanguage");
+
+        res.status(200).json({ myPendingReq })
+
+    } catch (error) {
+        console.log("Error in getSentReq controller:", error)
         res.status(500).json({ message: "Internal Server Error" })
     }
 }
