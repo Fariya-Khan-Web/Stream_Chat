@@ -1,6 +1,6 @@
 import express from "express"
 import { protectedRoute } from "../middleware/authMiddleware.js"
-import { getMyFriends, getRecommendedUsers } from "../Controller/user-controller.js"
+import { getMyFriends, getRecommendedUsers, sendFriendReq } from "../Controller/user-controller.js"
 
 const router = express.Router()
 
@@ -9,5 +9,8 @@ router.use(protectedRoute)
 
 router.get('/', getRecommendedUsers)
 router.get('/friends', getMyFriends)
+
+router.post('/friendReq/:id', sendFriendReq)
+router.post('/accept',)
 
 export default router
