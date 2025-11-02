@@ -1,1 +1,12 @@
-@import 'tailwindcss'
+@import "tailwindcss";
+
+@theme {
+  --color-mint: oklch(0.72 0.11 178);
+  --color-coffee: oklch(28.6% 0.066 53.813)
+}
+
+@layer base {
+  body {
+    background-color: var(--color-mint);
+  }
+}
