@@ -1,12 +1,31 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
 @theme {
-  --color-mint: oklch(0.72 0.11 178);
-  --color-coffee: oklch(28.6% 0.066 53.813)
+  /* --color-mint: oklch(0.72 0.11 178);
+  --color-coffee: oklch(28.6% 0.066 53.813) */
 }
 
-@layer base {
-  body {
-    background-color: var(--color-mint);
+@utility flex-center {
+  @apply flex justify-center items-center;
+}
+
+@utility col-center {
+  @apply flex flex-col flex-center items-center
+}
+
+
+@layer components {
+  .signup-page {
+    @apply flex-center min-h-screen lg:p-20 md:p-6 p-4;
+
+    .signup-content {
+      @apply border border-primary/25 grid grid-cols-1 md:grid-cols-2 w-full mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden;
+    
+      .form-box{
+        @apply 
+      }
+    }
+
   }
 }
