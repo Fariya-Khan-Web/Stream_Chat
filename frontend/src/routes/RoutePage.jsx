@@ -7,10 +7,28 @@ import OnBoarding from "../pages/OnBoarding";
 const RoutePage = ({ isAuthenticated, isOnboarded }) => {
     return (
         <Routes>
-            <Route path="/" element={isAuthenticated && isOnboarded? <Home/> : <Navigate to={'/login'} />} />
-            <Route path="/signup" element={!isAuthenticated ? <SignUp /> : <Navigate to={'/onboarding'} />} />
-            <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate to={'/onboarding'} />} />
-            <Route path="/onboarding" element={!isOnboarded ? <OnBoarding /> : <Navigate to={'/'} />} />
+            <Route path="/"
+                element={
+                    isAuthenticated
+                        ? (isOnboarded ? <Home /> : <Navigate to="/onboarding" />)
+                        : <Navigate to="/login" />
+                }
+            />
+            <Route path="/signup"
+                element={!isAuthenticated
+                    ? <SignUp />
+                    : (isOnboarded ? <Navigate to='/' /> : <Navigate to='/onboarding' />)}
+            />
+            <Route path="/login"
+                element={!isAuthenticated
+                    ? <LoginPage />
+                    : (isOnboarded ? <Navigate to='/' /> : <Navigate to='/onboarding' />)}
+            />
+            <Route path="/onboarding"
+                element={isAuthenticated
+                    ? (!isOnboarded ? <OnBoarding /> : <Navigate to='/' />) 
+                    : <Navigate to='/login' />}
+            />
         </Routes>
     );
 };

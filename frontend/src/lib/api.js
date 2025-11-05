@@ -8,5 +8,7 @@ export const signup = async (signupData) => {
 
 export const getAuthUser = async () => {
     const res = await axiosInst.get('/auth/me')
+    console.log(res)
     return res.data
+
 }

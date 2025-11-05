@@ -15,7 +15,7 @@ const SignUp = () => {
     const queryClient = useQueryClient()
     const { mutate: signupMutation, isPending, error } = useMutation({
         mutationFn: signup,
-        onSuccess: queryClient.invalidateQueries({queryKey: ['auth']})  
+        onSuccess: () => queryClient.invalidateQueries({queryKey: ['auth']})  
     })
 
     const handleSignup = (e) => {
@@ -119,7 +119,7 @@ const SignUp = () => {
                                     <p className="text-sm">
                                         Already have an account?{" "}
                                         <Link to="/login" className="text-primary hover:underline">
-                                            Sign in
+                                            Login
                                         </Link>
                                     </p>
                                 </div>
