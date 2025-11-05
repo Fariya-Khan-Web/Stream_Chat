@@ -29,7 +29,7 @@ const LoginPage = () => {
                     {/* form */}
                     <div className="w-full">
                         <form onSubmit={handleLogin}>
-                            <div className="space-y-4">
+                            <div className="space-y-7">
                                 <div>
                                     <h2 className="text-xl font-semibold">Create an Account</h2>
                                     <p className="text-sm opacity-70">
@@ -37,7 +37,7 @@ const LoginPage = () => {
                                     </p>
                                 </div>
 
-                                <div className="space-y-3">
+                                <div className="space-y-4">
                                   
                                     {/* EMAIL */}
                                     <div className="form-control w-full">
@@ -85,7 +85,7 @@ const LoginPage = () => {
                                     </div>
                                 </div>
 
-                                <button className="btn btn-primary w-full" type="submit">Create Account
+                                <button className="btn btn-primary w-full" type="submit">Login
                                     {/* {isPending ? (
                                         <>
                                             <span className="loading loading-spinner loading-xs"></span>

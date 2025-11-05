@@ -2,25 +2,23 @@ import { Navigate, Route, Routes } from "react-router"
 import Home from "./pages/Home"
 import SignUp from "./pages/SignUp"
 import LoginPage from "./pages/LoginPage"
-import { useQuery } from '@tanstack/react-query'
-import axiosInst from './lib/axios.js'
 import RoutePage from "./routes/RoutePage.jsx"
+import PageLoader from "./components/PageLoader.jsx"
+import useAuthUser from "./hooks/useAuthUser.js"
 
 function App() {
 
-  const { data: authData } = useQuery({
-    queryKey: ['auth'],
-    queryFn: async () => {
-      const res = await axiosInst.get('/auth/me')
-      return res.data
-    }
-  })
-  const authUser = authData?.user
+  const { authUser, isLoading } = useAuthUser()
 
-  
+  console.log(authUser, isLoading)
+  const isAuthenticated = Boolean(authUser)
+  const isOnboarded = authUser?.isOnboarded
+
+  if (isLoading) return <PageLoader />
+
   return (
     <div className="min-h-screen" >
-     <RoutePage authUser={authUser}/>
+      <RoutePage isAuthenticated={isAuthenticated} isOnboarded={isOnboarded}   />
     </div>
   )
 }

@@ -104,7 +104,7 @@ const SignUp = () => {
                                     </div>
                                 </div>
 
-                                <button className="btn btn-primary w-full" type="submit">Create Account
+                                <button className="btn btn-primary w-full" type="submit">
                                     {isPending ? (
                                         <>
                                             <span className="loading loading-spinner loading-xs"></span>
