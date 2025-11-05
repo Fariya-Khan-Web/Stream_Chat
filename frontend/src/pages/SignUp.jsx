@@ -1,6 +1,8 @@
 import { ShipWheelIcon } from 'lucide-react';
-import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router'
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { signup } from '../lib/api';
 
 const SignUp = () => {
 
@@ -10,12 +12,19 @@ const SignUp = () => {
         password: ''
     });
 
-    const handleSignup = () => {
+    const queryClient = useQueryClient()
+    const { mutate: signupMutation, isPending, error } = useMutation({
+        mutationFn: signup,
+        onSuccess: queryClient.invalidateQueries({queryKey: ['auth']})  
+    })
 
+    const handleSignup = (e) => {
+        e.preventDefault()
+        signupMutation(signupData)
     }
 
     return (
-        <div className="signup-page px-36">
+        <div className="signup-page">
             <div className='signup-content'>
 
                 <div className='w-full p-6 md:p-8'>
@@ -25,6 +34,7 @@ const SignUp = () => {
                         <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>Streamify</h2>
                     </div>
 
+                    {/* form */}
                     <div className="w-full">
                         <form onSubmit={handleSignup}>
                             <div className="space-y-4">
@@ -95,31 +105,46 @@ const SignUp = () => {
                                 </div>
 
                                 <button className="btn btn-primary w-full" type="submit">Create Account
-                                    {/* {isPending ? (
+                                    {isPending ? (
                                         <>
                                             <span className="loading loading-spinner loading-xs"></span>
                                             Loading...
                                         </>
                                     ) : (
                                         "Create Account"
-                                    )} */}
+                                    )}
                                 </button>
 
                                 <div className="text-center mt-4">
                                     <p className="text-sm">
                                         Already have an account?{" "}
-                                        {/* <Link to="/login" className="text-primary hover:underline">
+                                        <Link to="/login" className="text-primary hover:underline">
                                             Sign in
-                                        </Link> */}
+                                        </Link>
                                     </p>
                                 </div>
                             </div>
                         </form>
                     </div>
+
                 </div>
 
+                {/* img */}
+                <div className="hidden lg:flex w-full bg-primary/10 items-center justify-center">
+                    <div className="max-w-md p-8">
+                        {/* Illustration */}
+                        <div className="relative aspect-square max-w-sm mx-auto">
+                            <img src="/i.png" alt="Language connection illustration" className="w-full h-full" />
+                        </div>
 
-                <div className=''>Login</div>
+                        <div className="text-center space-y-3 mt-6">
+                            <h2 className="text-xl font-semibold">Connect with language partners worldwide</h2>
+                            <p className="opacity-70">
+                                Practice conversations, make friends, and improve your language skills together
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

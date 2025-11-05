@@ -20,7 +20,7 @@
     @apply flex-center min-h-screen lg:p-20 md:p-6 p-4;
 
     .signup-content {
-      @apply border border-primary/25 grid grid-cols-1 md:grid-cols-2 w-full mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden;
+      @apply border border-primary/25 grid grid-cols-1 lg:grid-cols-2 w-full md:max-w-xl lg:max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden;
 /*     
       .form-box{
         @apply 

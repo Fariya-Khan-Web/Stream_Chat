@@ -4,6 +4,7 @@ import SignUp from "./pages/SignUp"
 import LoginPage from "./pages/LoginPage"
 import { useQuery } from '@tanstack/react-query'
 import axiosInst from './lib/axios.js'
+import RoutePage from "./routes/RoutePage.jsx"
 
 function App() {
 
@@ -14,17 +15,12 @@ function App() {
       return res.data
     }
   })
-
   const authUser = authData?.user
-  console.log({authData})
 
+  
   return (
     <div className="min-h-screen" >
-      <Routes>
-        <Route path="/" element={authUser ? <Home /> : <Navigate to={'/login'} />} />
-        <Route path="/signup" element={!authUser ? <SignUp /> : <Navigate to={'/'} />} />
-        <Route path="/login" element={!authUser ? <LoginPage /> : <Navigate to={'/'} />} />
-      </Routes>
+     <RoutePage authUser={authUser}/>
     </div>
   )
 }
