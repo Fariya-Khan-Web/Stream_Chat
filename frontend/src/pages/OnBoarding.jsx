@@ -3,7 +3,7 @@ import useAuthUser from '../hooks/useAuthUser';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { completeOnboarding } from '../lib/api';
 import toast from 'react-hot-toast';
-import { Earth, EarthIcon, EarthLock, EarthLockIcon, LoaderIcon, MapIcon, MapPinIcon, ShipWheelIcon, ShuffleIcon, WebhookIcon, WholeWordIcon } from 'lucide-react';
+import { EarthLockIcon, ShuffleIcon } from 'lucide-react';
 import { LANGUAGES } from '../constants';
 
 const OnBoarding = () => {
@@ -26,7 +26,11 @@ const OnBoarding = () => {
         onSuccess: () => {
             toast.success("Profile onboarded successfully")
             queryClient.invalidateQueries({ queryKey: ['auth'] })
-        }
+        },
+
+        onError: (error) => {
+            toast.error(error.response.data.message);
+        },
     })
 
     const handleOnBoarding = (e) => {
@@ -156,18 +160,18 @@ const OnBoarding = () => {
                                     <label className="label">
                                         <span className="label-text">Location</span>
                                     </label>
-                                    <div className='relative'>
-                                        <MapPinIcon className="absolute top-1/2 transform -translate-y-1/2 left-3 size-5 text-base-content opacity-70" />
-                                        <input
-                                            type="text"
-                                            name='location'
-                                            className="input input-bordered rounded-3xl w-full"
-                                            value={onBoardedData.location}
-                                            placeholder='City, Country'
-                                            onChange={(e) => setOnBoardedData({ ...onBoardedData, location: e.target.value })}
-                                            required
-                                        />
-                                    </div>
+
+
+                                    <input
+                                        type="text"
+                                        name='location'
+                                        className="input input-bordered rounded-3xl w-full"
+                                        value={onBoardedData.location}
+                                        placeholder='City, Country'
+                                        onChange={(e) => setOnBoardedData({ ...onBoardedData, location: e.target.value })}
+                                        required
+                                    />
+
                                 </div>
 
                             </div>

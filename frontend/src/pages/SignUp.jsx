@@ -15,7 +15,7 @@ const SignUp = () => {
     const queryClient = useQueryClient()
     const { mutate: signupMutation, isPending, error } = useMutation({
         mutationFn: signup,
-        onSuccess: () => queryClient.invalidateQueries({queryKey: ['auth']})  
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['auth'] })
     })
 
     const handleSignup = (e) => {
@@ -33,6 +33,13 @@ const SignUp = () => {
                         <ShipWheelIcon className='size-9 text-primary' />
                         <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>Streamify</h2>
                     </div>
+
+                    {/* ERROR MESSAGE IF ANY */}
+                    {error && (
+                        <div className="alert alert-error mb-4">
+                            <span>{error.response.data.message}</span>
+                        </div>
+                    )}
 
                     {/* form */}
                     <div className="w-full">
