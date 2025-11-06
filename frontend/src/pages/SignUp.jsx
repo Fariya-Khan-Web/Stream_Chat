@@ -24,7 +24,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className="signup-page">
+        <div className="signup-page" data-theme='forest'>
             <div className='signup-content'>
 
                 <div className='w-full p-6 md:p-8'>
@@ -54,42 +54,42 @@ const SignUp = () => {
 
                                 <div className="space-y-3">
                                     {/* FULLNAME */}
-                                    <div className="form-control w-full">
+                                    <div className="form-control w-full space-y-2">
                                         <label className="label">
                                             <span className="label-text">Full Name</span>
                                         </label>
                                         <input
                                             type="text"
                                             placeholder="John Doe"
-                                            className="input input-bordered w-full"
+                                            className="input input-bordered rounded-3xl w-full"
                                             value={signupData.fullName}
                                             onChange={(e) => setSignupData({ ...signupData, fullName: e.target.value })}
                                             required
                                         />
                                     </div>
                                     {/* EMAIL */}
-                                    <div className="form-control w-full">
+                                    <div className="form-control w-full space-y-2">
                                         <label className="label">
                                             <span className="label-text">Email</span>
                                         </label>
                                         <input
                                             type="email"
                                             placeholder="john@gmail.com"
-                                            className="input input-bordered w-full"
+                                            className="input input-bordered rounded-3xl w-full"
                                             value={signupData.email}
                                             onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
                                             required
                                         />
                                     </div>
                                     {/* PASSWORD */}
-                                    <div className="form-control w-full">
+                                    <div className="form-control w-full space-y-2">
                                         <label className="label">
                                             <span className="label-text">Password</span>
                                         </label>
                                         <input
                                             type="password"
                                             placeholder="********"
-                                            className="input input-bordered w-full"
+                                            className="input input-bordered rounded-3xl w-full"
                                             value={signupData.password}
                                             onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
                                             required

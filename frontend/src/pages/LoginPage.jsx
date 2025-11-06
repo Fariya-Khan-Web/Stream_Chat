@@ -2,7 +2,7 @@ import { ShipWheelIcon } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router'
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { login, signup } from '../lib/api';
+import { login } from '../lib/api';
 import toast from 'react-hot-toast';
 
 const LoginPage = () => {
@@ -14,7 +14,7 @@ const LoginPage = () => {
 
     const queryClient = useQueryClient()
 
-    const { mutate: loginMutation, isPending } = useMutation({
+    const { mutate: loginMutation, isPending, error } = useMutation({
         mutationFn: login,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['auth'] })
@@ -29,7 +29,7 @@ const LoginPage = () => {
     }
 
     return (
-        <div className="signup-page">
+        <div className="signup-page" data-theme='forest'>
             <div className='signup-content'>
 
                 <div className='w-full p-6 md:p-8'>
@@ -49,6 +49,12 @@ const LoginPage = () => {
                                         Join Streamify and start your language learning adventure!
                                     </p>
                                 </div>
+
+                                {error && (
+                                    <div className="alert alert-error mb-4">
+                                        <span>{error.response.data.message}</span>
+                                    </div>
+                                )}
 
                                 <div className="space-y-5">
 
@@ -81,7 +87,7 @@ const LoginPage = () => {
                                             onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                                             required
                                         />
-                                   
+
                                     </div>
 
                                 </div>
