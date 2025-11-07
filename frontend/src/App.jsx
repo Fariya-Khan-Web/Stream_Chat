@@ -5,24 +5,27 @@ import LoginPage from "./pages/LoginPage"
 import RoutePage from "./routes/RoutePage.jsx"
 import PageLoader from "./components/PageLoader.jsx"
 import useAuthUser from "./hooks/useAuthUser.js"
+import { useThemeStore } from "./store/useThemeStore.js"
+
 
 function App() {
 
   const { authUser, isLoading } = useAuthUser()
+  const location = useLocation()
+  const { theme } = useThemeStore()
 
   const isAuthenticated = Boolean(authUser)
   const isOnboarded = authUser?.isOnboarded
 
-  const location = useLocation()
   console.log(location.pathname)
 
-  console.log({isAuthenticated, isOnboarded, isLoading})
+  console.log({ isAuthenticated, isOnboarded, isLoading })
 
   if (isLoading) return <PageLoader />
 
   return (
-    <div className="min-h-screen" >
-      <RoutePage isAuthenticated={isAuthenticated} isOnboarded={isOnboarded}   />
+    <div className="min-h-screen" data-theme={theme}>
+      <RoutePage isAuthenticated={isAuthenticated} isOnboarded={isOnboarded} />
     </div>
   )
 }

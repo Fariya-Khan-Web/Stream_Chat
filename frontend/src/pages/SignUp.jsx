@@ -29,7 +29,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className="signup-page" data-theme='forest'>
+        <div className="signup-page" data-theme='business'>
             <div className='signup-content'>
 
                 <div className='w-full p-6 md:p-8'>

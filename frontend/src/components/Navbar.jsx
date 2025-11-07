@@ -4,8 +4,7 @@ import useAuthUser from '../hooks/useAuthUser';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { logout } from '../lib/api';
 import toast from 'react-hot-toast';
-import { Navigate, useNavigate } from 'react-router';
-
+import ThemeSelector from './ThemeSelector';
 
 const Navbar = () => {
 
@@ -46,11 +45,8 @@ const Navbar = () => {
                             <Bell />
                         </div>
                     </div>
-                    <div className="btn btn-ghost btn-circle">
-                        <div className="indicator">
-                            <PaintRoller />
-                        </div>
-                    </div>
+
+                    <ThemeSelector/>
 
                     {/* profile */}
                     <div className="btn btn-ghost btn-circle avatar mx-3">
