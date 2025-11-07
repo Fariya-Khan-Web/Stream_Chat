@@ -1,10 +1,29 @@
 import { Bell, LogOutIcon, PaintRoller, ShipWheelIcon } from 'lucide-react';
 import React from 'react';
 import useAuthUser from '../hooks/useAuthUser';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { logout } from '../lib/api';
+import toast from 'react-hot-toast';
+import { Navigate, useNavigate } from 'react-router';
+
 
 const Navbar = () => {
 
     const { authUser } = useAuthUser()
+
+
+    const queryClient = useQueryClient()
+    const { mutate: logoutMutation, isPending } = useMutation({
+        mutationFn: logout,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['auth'] })
+            toast.success('Logged out')
+        }
+    })
+
+    const handleLogout = () => {
+        logoutMutation()
+    }
 
     return (
 
@@ -24,12 +43,12 @@ const Navbar = () => {
 
                     <div className="btn btn-ghost btn-circle">
                         <div className="indicator">
-                           <Bell />
+                            <Bell />
                         </div>
                     </div>
                     <div className="btn btn-ghost btn-circle">
                         <div className="indicator">
-                           <PaintRoller />
+                            <PaintRoller />
                         </div>
                     </div>
 
@@ -42,14 +61,19 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <button><LogOutIcon /></button>
+                    <button
+                        disabled={isPending}
+                        onClick={handleLogout}
+                    >
+                        <LogOutIcon />
+                    </button>
 
                 </div>
 
 
             </div>
         </div>
-       
+
     );
 };
 

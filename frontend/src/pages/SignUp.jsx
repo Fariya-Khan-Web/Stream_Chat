@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router'
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { signup } from '../lib/api';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
 
@@ -15,7 +16,10 @@ const SignUp = () => {
     const queryClient = useQueryClient()
     const { mutate: signupMutation, isPending, error } = useMutation({
         mutationFn: signup,
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['auth'] })
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['auth'] })
+            toast.success("Account Created")
+        }
     })
     console.log(error?.message)
 

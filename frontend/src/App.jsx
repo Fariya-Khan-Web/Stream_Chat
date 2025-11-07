@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router"
+import { Navigate, Route, Routes, useLocation } from "react-router"
 import Home from "./pages/Home"
 import SignUp from "./pages/SignUp"
 import LoginPage from "./pages/LoginPage"
@@ -12,6 +12,9 @@ function App() {
 
   const isAuthenticated = Boolean(authUser)
   const isOnboarded = authUser?.isOnboarded
+
+  const location = useLocation()
+  console.log(location.pathname)
 
   console.log({isAuthenticated, isOnboarded, isLoading})
 
