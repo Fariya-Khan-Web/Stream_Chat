@@ -3,6 +3,7 @@ import Home from '../pages/Home';
 import SignUp from '../pages/SignUp';
 import LoginPage from '../pages/LoginPage';
 import OnBoarding from "../pages/OnBoarding";
+import Layout from "../components/Layout";
 
 const RoutePage = ({ isAuthenticated, isOnboarded }) => {
     return (
@@ -10,7 +11,11 @@ const RoutePage = ({ isAuthenticated, isOnboarded }) => {
             <Route path="/"
                 element={
                     isAuthenticated
-                        ? (isOnboarded ? <Home /> : <Navigate to="/onboarding" />)
+                        ? (isOnboarded
+                            ? <Layout>
+                                <Home />
+                            </Layout>
+                            : <Navigate to="/onboarding" />)
                         : <Navigate to="/login" />
                 }
             />
@@ -26,7 +31,7 @@ const RoutePage = ({ isAuthenticated, isOnboarded }) => {
             />
             <Route path="/onboarding"
                 element={isAuthenticated
-                    ? (!isOnboarded ? <OnBoarding /> : <Navigate to='/' />) 
+                    ? (!isOnboarded ? <OnBoarding /> : <Navigate to='/' />)
                     : <Navigate to='/login' />}
             />
         </Routes>
