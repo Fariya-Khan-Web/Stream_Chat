@@ -36,7 +36,7 @@ const LoginPage = () => {
                     {/* logo */}
                     <div className='flex items-center gap-2 text-3xl py-6'>
                         <ShipWheelIcon className='size-9 text-primary' />
-                        <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>Streamify</h2>
+                        <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary'>Streamify</h2>
                     </div>
 
                     {/* form */}
