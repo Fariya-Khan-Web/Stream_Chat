@@ -50,9 +50,10 @@ const LoginPage = () => {
                                     </p>
                                 </div>
 
+                                {/* ERROR MESSAGE IF ANY */}
                                 {error && (
                                     <div className="alert alert-error mb-4">
-                                        <span>{error.response.data.message}</span>
+                                        <span>{error?.message}</span>
                                     </div>
                                 )}
 

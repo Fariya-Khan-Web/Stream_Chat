@@ -17,6 +17,7 @@ const SignUp = () => {
         mutationFn: signup,
         onSuccess: () => queryClient.invalidateQueries({ queryKey: ['auth'] })
     })
+    console.log(error?.message)
 
     const handleSignup = (e) => {
         e.preventDefault()
@@ -31,13 +32,13 @@ const SignUp = () => {
                     {/* logo */}
                     <div className='flex items-center gap-2 text-3xl py-6'>
                         <ShipWheelIcon className='size-9 text-primary' />
-                        <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary'>Streamify</h2>
+                        <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary'>Streamify</h2>
                     </div>
 
                     {/* ERROR MESSAGE IF ANY */}
                     {error && (
                         <div className="alert alert-error mb-4">
-                            <span>{error.response.data.message}</span>
+                            <span>{error?.message}</span>
                         </div>
                     )}
 

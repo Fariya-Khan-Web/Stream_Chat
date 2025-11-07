@@ -13,7 +13,7 @@ function App() {
   const isAuthenticated = Boolean(authUser)
   const isOnboarded = authUser?.isOnboarded
 
-  console.log(isAuthenticated, isOnboarded, isLoading)
+  console.log({isAuthenticated, isOnboarded, isLoading})
 
   if (isLoading) return <PageLoader />
 
