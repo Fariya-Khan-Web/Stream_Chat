@@ -36,7 +36,7 @@ const SignUp = () => {
                     {/* logo */}
                     <div className='flex items-center gap-2 text-3xl py-6'>
                         <ShipWheelIcon className='size-9 text-primary' />
-                        <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary'>Streamify</h2>
+                        <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary'>StreamChat</h2>
                     </div>
 
                     {/* ERROR MESSAGE IF ANY */}
@@ -53,7 +53,7 @@ const SignUp = () => {
                                 <div>
                                     <h2 className="text-xl font-semibold">Create an Account</h2>
                                     <p className="text-sm opacity-70">
-                                        Join Streamify and start your language learning adventure!
+                                        Join StreamChat and start your language learning adventure!
                                     </p>
                                 </div>
 

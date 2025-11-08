@@ -32,7 +32,7 @@ const Navbar = () => {
             <div className="flex-1">
                 <div className='flex items-center gap-2 text-3xl lg:hidden'>
                     <ShipWheelIcon className='size-9 text-primary ' />
-                    <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary'>Streamify</h2>
+                    <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary'>StreamChat</h2>
                 </div>
             </div>
 
