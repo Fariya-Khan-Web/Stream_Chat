@@ -8,23 +8,22 @@ import FriendCard from './FriendCard';
 
 const Friends = () => {
 
-    const { data: friends, isLoading } = useQuery({
+    const { data: friends=[], isLoading } = useQuery({
         queryKey: ['friends'],
         queryFn: getMyFriends,
     })
 
-    console.log({ friends })
 
     return (
-        <div className='py-8 mx-10'>
+        <div className='mx-3 md:mx-6 my-8 lg:mx-10'>
 
             <div className='flex justify-between items-center'>
                 <h1 className='text-3xl font-bold'>Your Friends</h1>
                 <Link
                     to='/notifications'
-                    className='btn rounded-3xl p-4'
+                    className='btn text-sm md:text-base rounded-3xl p-4'
                 >
-                    <UsersIcon className='size-5' />
+                    <UsersIcon className='size-4 md:size-5' />
                     Friend Requests
                 </Link>
             </div>
@@ -32,9 +31,13 @@ const Friends = () => {
 
             {
                 isLoading
-                    ? <div><span className='loading-dots' /></div>
+                    ? <div className="flex justify-center py-12">
+                        <span className="loading loading-spinner loading-lg" />
+                    </div>
                     : friends.length == 0
-                        ? <NoFriends />
+                        ? <NoFriends
+                            title={'No Friends Found!'}
+                            description={'Connect with language partners below to start practicing together!'} />
                         : friends.map(friend => (
                             <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4'>
                                 <FriendCard friend={friend} />

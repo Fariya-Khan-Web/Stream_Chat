@@ -1,6 +1,9 @@
 import React from 'react';
 
-const FriendCard = () => {
+const FriendCard = ({friend}) => {
+    
+    const {fullName} = friend
+
     return (
         <div>
             Friend Card
