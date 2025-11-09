@@ -6,11 +6,9 @@ import { Bell, Home, ShipWheelIcon, UsersIcon } from 'lucide-react';
 const Sidebar = () => {
 
     const { authUser } = useAuthUser()
-    console.log(authUser)
 
     const location = useLocation()
     const currentPath = location.pathname
-    console.log(currentPath)
 
     return (
         <aside className="w-64 bg-base-300 border-r border-base-300 hidden lg:flex flex-col h-screen sticky top-0">

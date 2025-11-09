@@ -1,9 +1,12 @@
 import React from 'react';
+import Friends from '../components/Friends';
+import RecUsers from '../components/RecUsers';
 
 const Home = () => {
     return (
         <div>
-            HOME
+            <Friends />
+            <RecUsers />
         </div>
     );
 };

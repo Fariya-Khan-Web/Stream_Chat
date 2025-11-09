@@ -20,17 +20,25 @@ export const logout = async () => {
 export const getAuthUser = async () => {
     try {
         const res = await axiosInst.get('/auth/me')
-        console.log(res)
         return res.data
-    } catch  {
+    } catch {
         return null
     }
-
 }
 
 
 export const completeOnboarding = async (userData) => {
     const res = await axiosInst.post('/auth/onboarding', userData)
     return res.data
+}
 
+
+export const getMyFriends = async () => {
+    const res = await axiosInst.get('users/friends')
+    return res.data
+}
+
+export const getRecommendedUsers = async () => {
+    const res = await axiosInst.get('/users')
+    return res.data
 }
