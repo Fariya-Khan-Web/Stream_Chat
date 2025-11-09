@@ -9,12 +9,12 @@ export const getRecommendedUsers = async (req, res) => {
         const recommendedUsers = await User.find({
             $and: [
                 { _id: { $ne: currentUserId } },  //excludes current user
-                { $id: { $nin: currentUser.friends } },  //excludes friends
+                { _id: { $nin: currentUser.friends } },  //excludes friends
                 { isOnboarded: true },
             ]
         })
 
-        res.status(200).json({ recommendedUsers })
+        res.status(200).json( recommendedUsers )
 
     } catch (error) {
         console.log("Error in getRecommendedUsers controller:", error)
