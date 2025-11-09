@@ -8,16 +8,12 @@ import FriendCard from './FriendCard';
 
 const Friends = () => {
 
-    // const [friends, setFriends] = useState([]);
-
     const { data: friends, isLoading } = useQuery({
         queryKey: ['friends'],
         queryFn: getMyFriends,
     })
-    const data = friends.data
 
     console.log({ friends })
-    console.log({ data })
 
     return (
         <div className='py-8 mx-10'>
@@ -34,18 +30,18 @@ const Friends = () => {
             </div>
 
 
-            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4'>
+            {
+                isLoading
+                    ? <div><span className='loading-dots' /></div>
+                    : friends.length == 0
+                        ? <NoFriends />
+                        : friends.map(friend => (
+                            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4'>
+                                <FriendCard friend={friend} />
+                            </div>
+                        ))
+            }
 
-                {
-                    isLoading
-                        ? <div><span className='loading-dots' /></div>
-                        : friends.length == 0
-                            ? <NoFriends />
-                            : friends.map(friend => <FriendCard friend={friend} />)
-                }
-
-
-            </div>
         </div>
     );
 };
