@@ -42,3 +42,9 @@ export const getRecommendedUsers = async () => {
     const res = await axiosInst.get('/users')
     return res.data
 }
+
+
+export const sendFriendReq = async(id) =>{
+    const res = await axiosInst.post(`/friendReq/${id}`)
+    res.data
+}

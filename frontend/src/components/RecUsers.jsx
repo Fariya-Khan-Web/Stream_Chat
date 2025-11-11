@@ -1,8 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import { getRecommendedUsers } from '../lib/api';
-import FriendCard from './FriendCard';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { getRecommendedUsers, sendFriendReq } from '../lib/api';
 import NoFriends from './NoFriends';
+import UserCard from './UserCard';
 
 const RecUsers = () => {
 
@@ -12,7 +11,11 @@ const RecUsers = () => {
         queryFn: getRecommendedUsers,
     })
 
-    console.log({ recUsers })
+
+    const { mutate: requestMutation, isLoading: reqLoad } = useMutation({
+        mutationFn: sendFriendReq,
+        onSuccess: () => { }
+    })
 
 
     return (
@@ -21,7 +24,7 @@ const RecUsers = () => {
                 <h1 className='font-bold text-3xl'>Meet New Learners</h1>
                 <p>Discover perfect language exchange partners based on your profile</p>
             </div>
-            <div>
+            <div className='my-8'>
                 {
                     isLoading
                         ? <div className="flex justify-center py-12">
@@ -31,11 +34,19 @@ const RecUsers = () => {
                             ? <NoFriends
                                 title={'No recommendations available'}
                                 description={' Check back later for new language partners!'} />
-                            : recUsers.map(user => (
-                                <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4'>
-                                    <FriendCard friend={user} />
+
+                            : (
+                                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                                    {
+                                        recUsers.map(user => (
+                                            <div key={user._id} >
+                                                <UserCard user={user} loading={reqLoad} />
+                                            </div>
+                                        ))
+                                    }
                                 </div>
-                            ))
+
+                            )
                 }
             </div>
         </div>
