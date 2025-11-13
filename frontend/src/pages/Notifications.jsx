@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { getRequests } from '../lib/api';
 import RequestCard from '../components/RequestCard';
+import Connected from '../components/Connected';
+import { BellIcon } from 'lucide-react';
 
 const Notifications = () => {
 
@@ -25,7 +27,7 @@ const Notifications = () => {
                             <span className="loading loading-spinner loading-lg" />
                         </div>)
                         : (!friendRequests?.reqForMe?.length > 0
-                            ? <div className='bg-base-300/40 text-center space-y-0.5 py-6 my-7 rounded-xl px-5 col-center'>
+                            ? <div className='bg-base-300/40 text-center py-6 my-7 rounded-xl px-5 col-center'>
                                 <h2 className='text-xl font-semibold'>No Requests to Show</h2>
                                 <p className='opacity-15 text-sm'>no one wants you lol</p>
                                 <p className='opacity-80 max-w-[420px] mx-auto'>Friend requests will be visible if someone sends you a friend request.</p>
@@ -40,12 +42,25 @@ const Notifications = () => {
             </div>
 
 
+
             {/* connnections */}
-            <div className='py-6 max-w-5xl mx-auto'>
-                <h2 className='text-2xl font-bold'>New Connections</h2>
-
-
-            </div>
+            {
+                isLoading
+                    ? (<div className="flex justify-center py-12">
+                        <span className="loading loading-spinner loading-lg" />
+                    </div>)
+                    : (friendRequests?.acceptedReq?.length > 0
+                        ? <div className='py-6 max-w-5xl mx-auto'>
+                            <h2 className='text-2xl font-bold mb-7 flex items-center gap-2'><BellIcon />New Connections</h2>
+                            {
+                                friendRequests?.acceptedReq?.map(connection => (
+                                    <Connected key={connection._id} connection={connection} />
+                                ))
+                            }
+                        </div>
+                        : ''
+                    )
+            }
 
         </div>
     );

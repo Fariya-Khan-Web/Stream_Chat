@@ -9,10 +9,11 @@ const RequestCard = ({ request }) => {
 
 
     const queryClient = useQueryClient()
-    const { mutate: acceptReqMutation } = useMutation({
+    const { mutate: acceptReqMutation, isPending } = useMutation({
         mutationFn: acceptRequest,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['friends', 'friendReqs'] })
+            queryClient.invalidateQueries({ queryKey: ['friends'] })
+            queryClient.invalidateQueries({ queryKey: ['friendReqs'] })
             toast.success("Account Created")
         }
     })
@@ -46,6 +47,7 @@ const RequestCard = ({ request }) => {
             <button
                 className='btn btn-primary pb-1'
                 onClick={handleAccept}
+                disabled={isPending}
             >
                 Accept
             </button>

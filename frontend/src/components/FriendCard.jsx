@@ -8,7 +8,7 @@ const FriendCard = ({ friend }) => {
     console.log({ friend })
 
     return (
-        <div className='p-3.5 rounded-xl bg-base-300/80'>
+        <div className='p-3.5 rounded-xl bg-base-300/80 flex flex-col'>
             <div className='flex items-center gap-2'>
                 <img src={profilePic} className='size-13' alt="profile picture" />
                 <h2 className='font-semibold text-lg'>{fullName}</h2>
@@ -16,7 +16,7 @@ const FriendCard = ({ friend }) => {
 
 
             {/* languages */}
-            <div className='space-x-2 my-4'>
+            <div className='space-x-2 my-4 grow'>
                 <span className='capitalize badge badge-secondary my-1'>
                     <img
                         className='w-4 h-3'
@@ -40,7 +40,7 @@ const FriendCard = ({ friend }) => {
             <button
                 className='btn btn-outline w-full mt-2'
             >
-                Messge
+                Message
             </button>
 
 
