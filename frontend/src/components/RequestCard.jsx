@@ -1,22 +1,29 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
+import { acceptRequest } from '../lib/api';
+import toast from 'react-hot-toast';
 
 const RequestCard = ({ request }) => {
 
-    const { _id, fullName, profilePic, nativeLanguage, learningLanguage } = request.sender
+    const { fullName, profilePic, nativeLanguage, learningLanguage } = request.sender
 
 
-    const {mutate: acceptReqMutation} = useMutation({
-        // mutationFn: 
+    const queryClient = useQueryClient()
+    const { mutate: acceptReqMutation } = useMutation({
+        mutationFn: acceptRequest,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['friends', 'friendReqs'] })
+            toast.success("Account Created")
+        }
     })
 
 
     const handleAccept = () => {
-
+        acceptReqMutation(request._id)
     }
 
     return (
-        <div className='bg-base-300 p-4 px-6 rounded-2xl md:flex items-center justify-between'>
+        <div className='bg-base-300 p-4 px-6 mt-3.5 rounded-2xl md:flex items-center justify-between'>
 
             <div className='flex gap-3'>
                 <img
@@ -38,7 +45,7 @@ const RequestCard = ({ request }) => {
             {/* accept */}
             <button
                 className='btn btn-primary pb-1'
-                onClick={() => handleAccept()}
+                onClick={handleAccept}
             >
                 Accept
             </button>

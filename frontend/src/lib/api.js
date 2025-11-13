@@ -60,6 +60,6 @@ export const getRequests = async () => {
 }
 
 export const acceptRequest = async (id) => {
-    const res = await axiosInst.put(`/friendReq/${id}/accept`)
+    const res = await axiosInst.put(`/users/friendReq/${id}/accept`)
     return res.data
 }

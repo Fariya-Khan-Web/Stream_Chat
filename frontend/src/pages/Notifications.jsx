@@ -1,19 +1,14 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getRequests } from '../lib/api';
-import { useLocation } from 'react-router';
 import RequestCard from '../components/RequestCard';
 
 const Notifications = () => {
 
-    const queryClient = useQueryClient()
 
     const { data: friendRequests, isLoading } = useQuery({
         queryKey: ['friendReqs'],
         queryFn: getRequests,
     })
-
-    const loc = useLocation()
-    console.log(loc.pathname)
 
     console.log(friendRequests)
 
@@ -23,7 +18,7 @@ const Notifications = () => {
 
             {/* requests */}
             <div className='py-10 max-w-5xl mx-auto'>
-                <h2 className='text-2xl font-bold'>Friend Requests</h2>
+                <h2 className='text-2xl font-bold mb-7'>Friend Requests</h2>
                 {
                     isLoading
                         ? (<div className="flex justify-center py-12">
@@ -36,9 +31,7 @@ const Notifications = () => {
                                 <p className='bg-sm max-w-[460px] mx-auto'>Friend requests will be visible if someone sends you a friend request. Invite your friends to join StreamChat</p>
                             </div>
                             : (friendRequests?.reqForMe?.map(req => (
-                                <div key={req._id} className='py-5'>
-                                    <RequestCard request={req} />
-                                </div>
+                                <RequestCard key={req._id} request={req} />
                             )))
                         )
                 }
