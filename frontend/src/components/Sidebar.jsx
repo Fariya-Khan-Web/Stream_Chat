@@ -26,14 +26,14 @@ const Sidebar = () => {
                 ${currentPath === '/' && 'bg-gray-700/60 shadow-2xl'}`}><Home />Home</Link>
 
                 <Link
-                    to={'/'}
+                    to={'/friends'}
                     className={`flex gap-2 p-3 w-full rounded-3xl my-4 hover:bg-gray-700/30 hover:-translate-y-0.5 
                 ${currentPath === '/friends' && 'bg-gray-700/60 shadow-2xl'}`}><UsersIcon /> Friends</Link>
 
                 <Link
-                    to={'/'}
+                    to={'/notifications'}
                     className={`flex gap-2 p-3 w-full rounded-3xl my-4 hover:bg-gray-700/30 hover:-translate-y-0.5 
-                ${currentPath === '/notification' && 'bg-gray-700/60 shadow-2xl'}`}><Bell />Notifications</Link>
+                ${currentPath === '/notifications' && 'bg-gray-700/60 shadow-2xl'}`}><Bell />Notifications</Link>
 
             </nav>
 

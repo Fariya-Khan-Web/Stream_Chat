@@ -44,12 +44,22 @@ export const getRecommendedUsers = async () => {
 }
 
 
-export const sendFriendReq = async(id) =>{
+export const sendFriendReq = async (id) => {
     const res = await axiosInst.post(`users/friendReq/${id}`)
     return res.data
 }
 
-export const getSentRequests = async() =>{
+export const getSentRequests = async () => {
     const res = await axiosInst.get(`/users/outgoingReqs`)
+    return res.data
+}
+
+export const getRequests = async () => {
+    const res = await axiosInst.get('/users/friendReqs')
+    return res.data
+}
+
+export const acceptRequest = async (id) => {
+    const res = await axiosInst.put(`/friendReq/${id}/accept`)
     return res.data
 }

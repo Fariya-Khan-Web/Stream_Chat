@@ -4,6 +4,7 @@ import SignUp from '../pages/SignUp';
 import LoginPage from '../pages/LoginPage';
 import OnBoarding from "../pages/OnBoarding";
 import Layout from "../components/Layout";
+import Notifications from "../pages/Notifications";
 
 const RoutePage = ({ isAuthenticated, isOnboarded }) => {
     return (
@@ -14,6 +15,17 @@ const RoutePage = ({ isAuthenticated, isOnboarded }) => {
                         ? (isOnboarded
                             ? <Layout>
                                 <Home />
+                            </Layout>
+                            : <Navigate to="/onboarding" />)
+                        : <Navigate to="/login" />
+                }
+            />
+            <Route path="/notifications"
+                element={
+                    isAuthenticated
+                        ? (isOnboarded
+                            ? <Layout>
+                                <Notifications />
                             </Layout>
                             : <Navigate to="/onboarding" />)
                         : <Navigate to="/login" />

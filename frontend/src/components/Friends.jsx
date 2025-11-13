@@ -3,7 +3,7 @@ import React from 'react';
 import { getMyFriends } from '../lib/api';
 import { Link } from 'react-router';
 import { UsersIcon } from 'lucide-react';
-import NoFriends from './NoFriends';
+import NoUsers from './NoUsers';
 import FriendCard from './FriendCard';
 
 const Friends = () => {
@@ -35,7 +35,7 @@ const Friends = () => {
                         <span className="loading loading-spinner loading-lg" />
                     </div>
                     : friends.length == 0
-                        ? <NoFriends
+                        ? <NoUsers
                             title={'No Friends Found!'}
                             description={'Connect with language partners below to start practicing together!'} />
                         : friends.map(friend => (

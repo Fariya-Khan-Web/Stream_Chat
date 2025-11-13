@@ -137,12 +137,12 @@ export const getRequest = async (req, res) => {
 export const getSentRequests = async (req, res) => {
     try {
         const myId = req.user.id
-        console.log(myId)
+
         const myPendingReq = await FriendRequest.find({
             sender: myId,
             status: "pending"
         }).populate("recipient", "fullName profilePic nativeLanguage learningLanguage");
-        console.log(myPendingReq)
+
         res.status(200).json(myPendingReq)
 
     } catch (error) {

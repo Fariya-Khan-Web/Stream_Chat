@@ -1,7 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getRecommendedUsers, getSentRequests, sendFriendReq } from '../lib/api';
-import NoFriends from './NoFriends';
-import UserCard from './UserCard';
+import NoUsers from './NoUsers';
 import getLanguageFlag from '../hooks/useFlag';
 import { CheckCircleIcon, MapPin, UserPlusIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -36,12 +35,7 @@ const RecUsers = () => {
             })
             setOutGoingFriendReqIds(outGoingIds)
         }
-        console.log("??????",{outGoingIds})
     }, [outGoingFriendReqs])
-
-    console.log({ outGoingFriendReqs })
-    console.log({ outGoingFriendReqsIds })
-    console.log({ recUsers })
 
     return (
         <div className='mx-3 md:mx-6 lg:mx-10'>
@@ -56,7 +50,7 @@ const RecUsers = () => {
                             <span className="loading loading-spinner loading-lg" />
                         </div>
                         : recUsers.length == 0
-                            ? <NoFriends
+                            ? <NoUsers
                                 title={'No recommendations available'}
                                 description={' Check back later for new language partners!'} />
 
@@ -66,10 +60,8 @@ const RecUsers = () => {
                                         recUsers?.map(user => {
                                             const hasRequestBeenSent = outGoingFriendReqsIds?.has(user?._id);
 
-                                            console.log(user.fullName, { hasRequestBeenSent })
-
                                             return (
-                                                <div className='p-4 rounded-xl bg-base-300/80'>
+                                                <div key={user._id} className='p-4 rounded-xl bg-base-300/80'>
 
                                                     <div className='flex items-center gap-2'>
                                                         <img src={user.profilePic} className='size-13' alt="profile picture" />
