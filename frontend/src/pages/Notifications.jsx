@@ -25,10 +25,10 @@ const Notifications = () => {
                             <span className="loading loading-spinner loading-lg" />
                         </div>)
                         : (!friendRequests?.reqForMe?.length > 0
-                            ? <div className='bg-base-300/40 text-center space-y-1 py-8 my-7 rounded-xl px-5 col-center'>
+                            ? <div className='bg-base-300/40 text-center space-y-0.5 py-6 my-7 rounded-xl px-5 col-center'>
                                 <h2 className='text-xl font-semibold'>No Requests to Show</h2>
-                                <p className='opacity-20 text-sm'>no one wants you lol</p>
-                                <p className='bg-sm max-w-[460px] mx-auto'>Friend requests will be visible if someone sends you a friend request. Invite your friends to join StreamChat</p>
+                                <p className='opacity-15 text-sm'>no one wants you lol</p>
+                                <p className='opacity-80 max-w-[420px] mx-auto'>Friend requests will be visible if someone sends you a friend request.</p>
                             </div>
                             : (friendRequests?.reqForMe?.map(req => (
                                 <RequestCard key={req._id} request={req} />

@@ -17,7 +17,7 @@ const Friends = () => {
     return (
         <div className='mx-3 md:mx-6 my-8 lg:mx-10'>
 
-            <div className='flex justify-between items-center'>
+            <div className='flex justify-between items-center mb-7'>
                 <h1 className='text-3xl font-bold'>Your Friends</h1>
                 <Link
                     to='/notifications'
@@ -40,7 +40,7 @@ const Friends = () => {
                             description={'Connect with language partners below to start practicing together!'} />
                         : friends.map(friend => (
                             <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4'>
-                                <FriendCard friend={friend} />
+                                <FriendCard key={friend._id} friend={friend} />
                             </div>
                         ))
             }
