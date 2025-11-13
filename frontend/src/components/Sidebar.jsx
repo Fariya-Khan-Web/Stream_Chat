@@ -11,7 +11,7 @@ const Sidebar = () => {
     const currentPath = location.pathname
 
     return (
-        <aside className="w-64 bg-base-300 border-r border-base-300 hidden lg:flex flex-col h-screen sticky top-0">
+        <aside className="w-64 bg-base-300 hidden lg:flex flex-col h-screen sticky top-0">
             {/* logo */}
             <div className='flex items-center gap-2 text-3xl py-6 p-5'>
                 <ShipWheelIcon className='size-9 text-primary' />
@@ -19,21 +19,21 @@ const Sidebar = () => {
             </div>
 
             {/* routes */}
-            <nav className='p-2 py-10 grow'>
+            <nav className='p-5 py-10 grow'>
                 <Link
                     to={'/'}
-                    className={`flex gap-2 p-3 w-full rounded-3xl my-4 hover:bg-gray-700/30 hover:-translate-y-0.5
-                ${currentPath === '/' && 'bg-gray-700/60 shadow-2xl'}`}><Home />Home</Link>
+                    className={`flex gap-2 p-3 w-full rounded-3xl my-4 hover:bg-base-100/60 hover:-translate-y-0.5
+                ${currentPath === '/' && 'bg-base-100 shadow-2xl'}`}><Home />Home</Link>
 
                 <Link
-                    to={'/friends'}
-                    className={`flex gap-2 p-3 w-full rounded-3xl my-4 hover:bg-gray-700/30 hover:-translate-y-0.5 
-                ${currentPath === '/friends' && 'bg-gray-700/60 shadow-2xl'}`}><UsersIcon /> Friends</Link>
+                    to={'/'}
+                    className={`flex gap-2 p-3 w-full rounded-3xl my-4 hover:bg-base-100/60 hover:-translate-y-0.5 
+                ${currentPath === '/friends' && 'bg-base-100 shadow-2xl'}`}><UsersIcon /> Friends</Link>
 
                 <Link
                     to={'/notifications'}
-                    className={`flex gap-2 p-3 w-full rounded-3xl my-4 hover:bg-gray-700/30 hover:-translate-y-0.5 
-                ${currentPath === '/notifications' && 'bg-gray-700/60 shadow-2xl'}`}><Bell />Notifications</Link>
+                    className={`flex gap-2 p-3 w-full rounded-3xl my-4 hover:bg-base-100/60 hover:-translate-y-0.5 
+                ${currentPath === '/notifications' && 'bg-base-100 shadow-2xl'}`}><Bell />Notifications</Link>
 
             </nav>
 

@@ -3,7 +3,7 @@
   themes: all;
 }
 
-@theme {
+@layer theme {
   /* --color-mint: oklch(0.72 0.11 178);
   --color-coffee: oklch(28.6% 0.066 53.813) */
 }
@@ -23,11 +23,44 @@
 
     .signup-content {
       @apply border border-primary/25 grid grid-cols-1 lg:grid-cols-2 w-full md:max-w-xl lg:max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden;
-/*     
-      .form-box{
-        @apply 
-      } */
+
     }
 
   }
 }
+
+
+
+.str-chat__channel {
+  display        : flex;
+  width          : 100%;
+  align-items    : center;
+  justify-content: center;
+  background     : linear-gradient(to bottom, #292d29, #181c19);
+  height         : 100%;
+}
+
+.str-chat__container {
+  width        : 80%;
+  height       : 90% !important;
+  margin       : 0 auto !important;
+  border-radius: 8px;
+  box-shadow   : 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow     : hidden;
+}
+
+.str-chat__list {
+  background-color: #eeeeee;
+  padding         : 12px;
+}
+
+.str-chat__list-notifications {
+  display: none;
+}
+
+.str-chat__message-input {
+  background: #ffffff;
+  border-top: 1px solid #b4b4b4;
+}
+
+

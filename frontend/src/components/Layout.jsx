@@ -7,7 +7,7 @@ const Layout = ({children, showSidebar = true }) => {
             {showSidebar && <Sidebar />}
 
             <div className='w-full'>
-                <Navbar/>
+                <Navbar showSidebar={showSidebar}/>
                 <main>{children}</main>
             </div>
 

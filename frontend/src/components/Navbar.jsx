@@ -6,7 +6,7 @@ import { logout } from '../lib/api';
 import toast from 'react-hot-toast';
 import ThemeSelector from './ThemeSelector';
 
-const Navbar = () => {
+const Navbar = ({showSidebar}) => {
 
     const { authUser } = useAuthUser()
 
@@ -30,7 +30,7 @@ const Navbar = () => {
 
             {/* logo */}
             <div className="flex-1">
-                <div className='flex items-center gap-2 text-3xl lg:hidden'>
+                <div className={`flex items-center gap-2 text-3xl ${showSidebar && 'hidden'}`}>
                     <ShipWheelIcon className='size-9 text-primary ' />
                     <h2 className='font-mono fond-bold  bg-clip-text text-transparent bg-linear-to-r from-primary to-secondary'>StreamChat</h2>
                 </div>

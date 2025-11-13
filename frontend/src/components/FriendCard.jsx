@@ -1,6 +1,7 @@
 import React from 'react';
 import { LANGUAGE_TO_FLAG } from '../constants';
 import getLanguageFlag from '../hooks/useFlag';
+import { Link } from 'react-router';
 
 const FriendCard = ({ friend }) => {
 
@@ -37,11 +38,12 @@ const FriendCard = ({ friend }) => {
 
 
             {/* message button */}
-            <button
+            <Link
+                to={`/chat/${friend._id}`}
                 className='btn btn-outline w-full mt-2'
             >
                 Message
-            </button>
+            </Link>
 
 
         </div>
