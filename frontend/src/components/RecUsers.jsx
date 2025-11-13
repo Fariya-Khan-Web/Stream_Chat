@@ -41,7 +41,7 @@ const RecUsers = () => {
         <div className='mx-3 md:mx-6 lg:mx-10'>
             <div className=' space-y-2'>
                 <h1 className='font-bold text-3xl'>Meet New Learners</h1>
-                <p>Discover perfect language exchange partners based on your profile</p>
+                <p className='opacity-80'>Discover perfect language exchange partners based on your profile</p>
             </div>
             <div className='my-8'>
                 {
@@ -61,7 +61,7 @@ const RecUsers = () => {
                                             const hasRequestBeenSent = outGoingFriendReqsIds?.has(user?._id);
 
                                             return (
-                                                <div key={user._id} className='p-4 rounded-xl bg-base-300/80'>
+                                                <div key={user._id} className='p-4 rounded-xl bg-base-300/80 flex flex-col'>
 
                                                     <div className='flex items-center gap-2'>
                                                         <img src={user.profilePic} className='size-13' alt="profile picture" />
@@ -91,7 +91,7 @@ const RecUsers = () => {
                                                         </span>
                                                     </div>
 
-                                                    <p className='pb-2'>{user.bio}</p>
+                                                    <p className='pb-2 grow'>{user.bio}</p>
 
 
                                                     {/* Action button */}

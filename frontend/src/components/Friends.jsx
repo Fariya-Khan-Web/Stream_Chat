@@ -8,7 +8,7 @@ import FriendCard from './FriendCard';
 
 const Friends = () => {
 
-    const { data: friends=[], isLoading } = useQuery({
+    const { data: friends = [], isLoading } = useQuery({
         queryKey: ['friends'],
         queryFn: getMyFriends,
     })
@@ -38,11 +38,14 @@ const Friends = () => {
                         ? <NoUsers
                             title={'No Friends Found!'}
                             description={'Connect with language partners below to start practicing together!'} />
-                        : friends.map(friend => (
-                            <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4'>
-                                <FriendCard key={friend._id} friend={friend} />
+                        : (
+                            <div className='grid gap-3.5 grid-cols-1 md:grid-cols-3 lg:grid-cols-4'>
+                                {
+                                    friends.map(friend => (<FriendCard key={friend._id} friend={friend} />))
+                                }
                             </div>
-                        ))
+
+                        )
             }
 
         </div>
