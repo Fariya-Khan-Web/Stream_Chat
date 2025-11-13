@@ -14,7 +14,7 @@ export const getRecommendedUsers = async (req, res) => {
             ]
         })
 
-        res.status(200).json( recommendedUsers )
+        res.status(200).json(recommendedUsers)
 
     } catch (error) {
         console.log("Error in getRecommendedUsers controller:", error)
@@ -42,6 +42,21 @@ export const sendFriendReq = async (req, res) => {
 
         const myId = req.user.id
         const { id: recipientID } = req.params
+
+        // checks
+        if (myId === recipientID) {
+            return res.status(400).json({ message: "You can't send friend request to yourself" });
+        }
+
+        const recipient = await User.findById(recipientID);
+        if (!recipient) {
+            return res.status(404).json({ message: "Recipient not found" });
+        }
+
+        // check if user is already friends
+        if (recipient.friends.includes(myId)) {
+            return res.status(400).json({ message: "You are already friends with this user" });
+        }
 
         const existingReq = await FriendRequest.findOne({
             $or: [
@@ -122,13 +137,13 @@ export const getRequest = async (req, res) => {
 export const getSentRequests = async (req, res) => {
     try {
         const myId = req.user.id
-
+        console.log(myId)
         const myPendingReq = await FriendRequest.find({
             sender: myId,
             status: "pending"
         }).populate("recipient", "fullName profilePic nativeLanguage learningLanguage");
-
-        res.status(200).json({ myPendingReq })
+        console.log(myPendingReq)
+        res.status(200).json(myPendingReq)
 
     } catch (error) {
         console.log("Error in getSentReq controller:", error)
