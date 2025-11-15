@@ -36,12 +36,13 @@
   width          : 100%;
   align-items    : center;
   justify-content: center;
-  background     : linear-gradient(to bottom, #292d29, #181c19);
+  background     : linear-gradient(to bottom, #666666, #000000);
   height         : 100%;
 }
 
 .str-chat__container {
-  width        : 80%;
+  max-width    : 1200px;
+  width        : 94%;
   height       : 90% !important;
   margin       : 0 auto !important;
   border-radius: 8px;
