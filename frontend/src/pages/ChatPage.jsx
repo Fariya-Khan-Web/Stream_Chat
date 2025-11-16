@@ -21,18 +21,16 @@ const ChatPage = () => {
     const { authUser } = useAuthUser()
 
     // will only run when authUser is available
-    const { data, isLoading } = useQuery({
+    const { data } = useQuery({
         queryKey: ['streamToken'],
         queryFn: getStreamToken,
         enabled: !!authUser //turns value into boolean
     })
 
-    console.log(data?.token)
-
     useEffect(() => {
 
         const initChat = async () => {
-            if (!authUser && !data.token) return
+            if (!authUser || !data.token || !targetUserId) return
 
             try {
                 console.log("Initializing stream chat client...")
@@ -71,7 +69,15 @@ const ChatPage = () => {
     }, [authUser, data, targetUserId])
 
     const handleVideoCall = () => {
+        if(channel){
+            const callUrl = `${window.location.origin}/call/${channel.id}`
 
+            channel.sendMessage({
+                text: `I've created a call. Join me here - ${callUrl}`
+            })
+
+            toast.success("video call link sent successfully")
+        }
     }
 
 

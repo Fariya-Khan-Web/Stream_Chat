@@ -6,6 +6,7 @@ import OnBoarding from "../pages/OnBoarding";
 import Layout from "../components/Layout";
 import Notifications from "../pages/Notifications";
 import ChatPage from "../pages/ChatPage";
+import CallPage from "../pages/CallPage";
 
 const RoutePage = ({ isAuthenticated, isOnboarded }) => {
     return (
@@ -38,6 +39,17 @@ const RoutePage = ({ isAuthenticated, isOnboarded }) => {
                         ? (isOnboarded
                             ? <Layout showSidebar={false}>
                                 <ChatPage />
+                            </Layout>
+                            : <Navigate to="/onboarding" />)
+                        : <Navigate to="/login" />
+                }
+            />
+            <Route path="/call/:id"
+                element={
+                    isAuthenticated
+                        ? (isOnboarded
+                            ? <Layout showSidebar={false}>
+                                <CallPage />
                             </Layout>
                             : <Navigate to="/onboarding" />)
                         : <Navigate to="/login" />

@@ -1,10 +1,13 @@
+import { VideoIcon } from 'lucide-react';
 import React from 'react';
 
-const CallButton = () => {
+const CallButton = ({handleVideoCall}) => {
     return (
-        <div className='btn'>
-            
-        </div>
+        <button 
+        onClick={handleVideoCall}
+        className='btn btn-success absolute right-2.5 top-2'>
+            <VideoIcon className='text-white'/>
+        </button>
     );
 };
 
