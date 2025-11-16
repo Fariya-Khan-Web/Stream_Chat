@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { signup } from '../lib/api';
 import toast from 'react-hot-toast';
+import img from '../assets/internet.png'
 
 const SignUp = () => {
 
@@ -29,7 +30,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className="signup-page" data-theme='business'>
+        <div className="signup-page" data-theme='night'>
             <div className='signup-content'>
 
                 <div className='w-full p-6 md:p-8'>
@@ -145,8 +146,8 @@ const SignUp = () => {
                 <div className="hidden lg:flex w-full bg-primary/10 items-center justify-center">
                     <div className="max-w-md p-8">
                         {/* Illustration */}
-                        <div className="relative aspect-square max-w-sm mx-auto">
-                            <img src="/i.png" alt="Language connection illustration" className="w-full h-full" />
+                        <div className="flex-center aspect-square max-w-sm mx-auto">
+                            <img src={img} alt="Language connection illustration" className="w-[60%] h-[60%]" />
                         </div>
 
                         <div className="text-center space-y-3 mt-6">
